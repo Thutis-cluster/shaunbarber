@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Block Barbers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#F2B705;
+    --green:#0B6E4F;
+    --red:#E2472A;
+    --ink:#151210;
+    --cream:#FBF6EB;
+    --display: 'Bungee', 'Arial Black', sans-serif;
+    --sans: 'Work Sans', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--cream);
+    line-height:1.6;
+  }
+  a{ color:inherit; }
+  .wrap{ max-width: 1080px; margin:0 auto; padding: 0 24px; }
+  img{ max-width:100%; display:block; }
+
+  /* ---------- Nav ---------- */
+  .nav{ background: var(--ink); }
+  .nav .wrap{
+    display:flex; align-items:center; justify-content:space-between; height: 78px;
+  }
+  .brand{
+    font-family: var(--display); font-size: 1.15rem; color: var(--yellow);
+    letter-spacing: 0.01em;
+  }
+  .nav-links{ display:flex; gap: 28px; list-style:none; }
+  .nav-links a{
+    color: var(--cream); text-decoration:none; font-weight:600; font-size: 0.92rem;
+  }
+  .nav-links a:hover{ color: var(--yellow); }
+  .nav-cta{
+    background: var(--red); color: var(--cream);
+    padding: 10px 20px; text-decoration:none; font-weight:700; font-size: 0.9rem;
+  }
+  @media (max-width: 720px){ .nav-links{ display:none; } }
+
+  /* ---------- Hero: diagonal color block ---------- */
+  .hero{
+    background: var(--green);
+    color: var(--cream);
+    position: relative;
+    overflow:hidden;
+    padding: 90px 0 110px;
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+  }
+  .hero .wrap{ position:relative; z-index:2; }
+  .hero .kicker{
+    font-weight:800; font-size: 0.9rem; letter-spacing:0.04em;
+    color: var(--yellow); margin-bottom: 16px;
+  }
+  .hero h1{
+    font-family: var(--display);
+    font-size: clamp(2.3rem, 6vw, 4rem);
+    line-height:1.15;
+    max-width: 13ch;
+  }
+  .hero p{
+    margin-top: 22px; max-width: 44ch; font-size: 1.08rem; color: rgba(251,246,235,0.88);
+  }
+  .hero-ctas{ margin-top: 32px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary{
+    background: var(--yellow); color: var(--ink);
+    padding: 14px 26px; text-decoration:none; font-weight:800; font-size:0.92rem;
+  }
+  .btn-secondary{
+    padding: 14px 26px; text-decoration:none; font-weight:800; font-size:0.92rem;
+    border: 2px solid var(--cream); color: var(--cream);
+  }
+  .hero-blob{
+    position:absolute; right:-40px; top:20px; width:260px; height:260px; opacity:0.9;
+  }
+  @media (max-width: 800px){ .hero-blob{ display:none; } }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 90px 0; }
+  .section-head{ margin-bottom: 44px; }
+  .kicker{ font-weight:800; font-size:0.85rem; color: var(--red); margin-bottom:10px; }
+  h2{
+    font-family: var(--display); font-size: clamp(1.7rem, 3vw, 2.3rem); line-height:1.25;
+  }
+
+  /* ---------- Price board (chalkboard style) ---------- */
+  .price-section{ background: var(--ink); color: var(--cream); }
+  .price-section .kicker{ color: var(--yellow); }
+  .price-section h2{ color: var(--cream); }
+  .board{ max-width: 640px; margin: 0 auto; border: 3px solid var(--yellow); padding: 8px; }
+  .board-inner{ border: 1px dashed rgba(251,246,235,0.35); padding: 28px; }
+  .price-row{
+    display:flex; align-items:baseline; gap: 12px; padding: 14px 0;
+  }
+  .price-row + .price-row{ border-top: 1px dotted rgba(251,246,235,0.25); }
+  .price-row .name{ font-weight:700; font-size: 1.05rem; white-space:nowrap; }
+  .price-row .sub{ display:block; font-weight:400; font-size:0.82rem; color: rgba(251,246,235,0.55); }
+  .price-row .dots{ flex:1; border-bottom: 2px dotted rgba(251,246,235,0.3); transform: translateY(-5px); }
+  .price-row .price{ font-family: var(--display); font-size: 1.1rem; color: var(--yellow); white-space:nowrap; }
+
+  /* ---------- Barbers, color-blocked cards ---------- */
+  .chairs{ display:grid; grid-template-columns: repeat(3,1fr); gap: 4px; }
+  .chair{
+    padding: 34px 24px; text-align:center; color: var(--cream);
+  }
+  .chair:nth-child(1){ background: var(--red); }
+  .chair:nth-child(2){ background: var(--green); }
+  .chair:nth-child(3){ background: #1b1815; }
+  .chair .initial{
+    width:60px; height:60px; border-radius:50%; background: var(--yellow); color: var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--display); font-size: 1.3rem; margin: 0 auto 16px;
+  }
+  .chair h3{ font-family: var(--display); font-size: 1.1rem; }
+  .chair p{ font-size: 0.9rem; color: rgba(251,246,235,0.85); margin-top:8px; }
+  @media (max-width: 720px){ .chairs{ grid-template-columns: 1fr; } }
+
+  /* ---------- Testimonials ---------- */
+  .quotes{ display:grid; grid-template-columns: repeat(3,1fr); gap: 36px; }
+  .quote{ border-left: 4px solid var(--green); padding-left: 18px; }
+  .quote p{ font-size: 1.05rem; }
+  .quote cite{ display:block; margin-top:12px; font-style:normal; font-size:0.85rem; color: rgba(21,18,16,0.6); }
+  @media (max-width: 860px){ .quotes{ grid-template-columns:1fr; } }
+
+  /* ---------- Info strip ---------- */
+  .info{ background: var(--yellow); }
+  .info .wrap{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
+    padding: 34px 24px;
+  }
+  .info-block b{ display:block; font-family: var(--display); font-size:0.95rem; margin-bottom:4px; }
+  .info-block span{ font-size:0.88rem; }
+
+  /* ---------- Booking ---------- */
+  .booking .wrap{ max-width: 620px; }
+  form{ display:grid; gap: 16px; margin-top: 26px; }
+  .form-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  label{ display:block; font-size:0.82rem; font-weight:700; margin-bottom:6px; }
+  input, select, textarea{
+    width:100%; padding: 12px 14px; font-family: var(--sans); font-size:0.95rem;
+    border: 2px solid var(--ink); background: var(--cream);
+  }
+  input:focus, select:focus, textarea:focus{ outline: 2px solid var(--red); outline-offset:1px; }
+  .submit-btn{
+    justify-self:start; background: var(--red); color: var(--cream);
+    border:none; padding: 14px 30px; font-weight:800; font-size:0.95rem; cursor:pointer;
+  }
+  .submit-btn:hover{ background:#c23a22; }
+  .form-note{ font-size:0.82rem; color: rgba(21,18,16,0.55); }
+  @media (max-width: 600px){ .form-row{ grid-template-columns:1fr; } }
+
+  /* ---------- Footer ---------- */
+  footer{ background: var(--ink); color: rgba(251,246,235,0.7); padding: 40px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:0.88rem; }
+  footer .brand{ font-size:1rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">THE BLOCK</div>
+    <ul class="nav-links">
+      <li><a href="#prices">Prices</a></li>
+      <li><a href="#chairs">Barbers</a></li>
+      <li><a href="#book">Book</a></li>
+    </ul>
+    <a class="nav-cta" href="#book">Book now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">SAWUBONA — WELCOME TO THE BLOCK</div>
+    <h1>Sharp fades. Good music. No rush.</h1>
+    <p>A kasi barbershop where the clippers run all day, the amapiano's always on, and everyone from the street knows your name.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#book">Book your slot</a>
+      <a class="btn-secondary" href="#prices">See prices</a>
+    </div>
+  </div>
+  <svg class="hero-blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="90" fill="none" stroke="#F2B705" stroke-width="6"/>
+    <circle cx="100" cy="100" r="60" fill="none" stroke="#E2472A" stroke-width="6"/>
+    <circle cx="100" cy="100" r="30" fill="#F2B705"/>
+  </svg>
+</section>
+
+<section class="price-section" id="prices">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">ON THE BOARD</div>
+      <h2>Prices, no surprises</h2>
+    </div>
+    <div class="board">
+      <div class="board-inner">
+        <div class="price-row">
+          <div class="name">Skin fade<span class="sub">Blended clean to the skin</span></div>
+          <div class="dots"></div>
+          <div class="price">R120</div>
+        </div>
+        <div class="price-row">
+          <div class="name">Classic cut<span class="sub">Clippers, scissors, or both</span></div>
+          <div class="dots"></div>
+          <div class="price">R90</div>
+        </div>
+        <div class="price-row">
+          <div class="name">Line-up &amp; beard</div>
+          <div class="dots"></div>
+          <div class="price">R60</div>
+        </div>
+        <div class="price-row">
+          <div class="name">Hot towel shave</div>
+          <div class="dots"></div>
+          <div class="price">R110</div>
+        </div>
+        <div class="price-row">
+          <div class="name">Cut + beard combo</div>
+          <div class="dots"></div>
+          <div class="price">R150</div>
+        </div>
+        <div class="price-row">
+          <div class="name">Kids cut<span class="sub">12 and under</span></div>
+          <div class="dots"></div>
+          <div class="price">R60</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="chairs">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">WHO'S CUTTING</div>
+      <h2>Three chairs, three styles</h2>
+    </div>
+  </div>
+  <div class="chairs">
+    <div class="chair">
+      <div class="initial">T</div>
+      <h3>Thabo</h3>
+      <p>Skin fades and sharp line-ups. Ask for the "Block Special."</p>
+    </div>
+    <div class="chair">
+      <div class="initial">S</div>
+      <h3>Sipho</h3>
+      <p>Hot towel shaves and beard shaping.</p>
+    </div>
+    <div class="chair">
+      <div class="initial">K</div>
+      <h3>Kagiso</h3>
+      <p>Classic scissor cuts and kids' styles.</p>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">FROM THE CHAIR</div>
+      <h2>What the block says</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <p>"Thabo's fades are the sharpest in the area, full stop."</p>
+        <cite>— Bongani M.</cite>
+      </div>
+      <div class="quote">
+        <p>"Music's always right, and the wait never feels long."</p>
+        <cite>— Lindiwe K.</cite>
+      </div>
+      <div class="quote">
+        <p>"Been coming here since I was a kid. Same crew, still the best."</p>
+        <cite>— Sizwe P.</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="info">
+  <div class="wrap">
+    <div class="info-block"><b>Hours</b><span>Mon–Sat, 8am–6pm · Sun, 9am–2pm</span></div>
+    <div class="info-block"><b>Location</b><span>14 Vilakazi Way, Soweto</span></div>
+    <div class="info-block"><b>Phone</b><span>071 234 5678</span></div>
+  </div>
+</div>
+
+<section class="booking" id="book">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">BOOK A CHAIR</div>
+      <h2>Lock in your slot</h2>
+      <p style="margin-top:12px; color:rgba(21,18,16,0.7); max-width:44ch;">Walk-ins always welcome — but book ahead if you don't want to wait around.</p>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Thanks — replace this with your real booking handler.');">
+      <div class="form-row">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" type="text" required>
+        </div>
+        <div>
+          <label for="phone">Cell number</label>
+          <input id="phone" type="tel" required>
+        </div>
+      </div>
+      <div>
+        <label for="barber">Preferred barber</label>
+        <select id="barber">
+          <option>No preference</option>
+          <option>Thabo</option>
+          <option>Sipho</option>
+          <option>Kagiso</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div>
+          <label for="date">Date</label>
+          <input id="date" type="date">
+        </div>
+        <div>
+          <label for="time">Time</label>
+          <input id="time" type="time">
+        </div>
+      </div>
+      <button class="submit-btn" type="submit">Request appointment</button>
+      <p class="form-note">This form doesn't send email on its own — see the notes below for how to connect it in WordPress.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">THE BLOCK</div>
+    <div>14 Vilakazi Way, Soweto · 071 234 5678</div>
+  </div>
+</footer>
+
+</body>
+</html>
