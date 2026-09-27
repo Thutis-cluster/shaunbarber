@@ -163,6 +163,121 @@
   footer{ background: var(--ink); color: rgba(251,246,235,0.7); padding: 40px 0; }
   footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; font-size:0.88rem; }
   footer .brand{ font-size:1rem; }
+
+  /* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+    padding: 35px 20px;
+    background: #050505;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.site-footer p {
+    color: #777;
+    font-size: 13px;
+}
+
+.crafted-by {
+    margin-top: 8px;
+}
+
+.crafted-by span {
+    color: var(--accent);
+}
+
+.crafted-by a {
+    color: #ddd;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.crafted-by a:hover {
+    color: var(--accent-light);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .services-grid,
+    .artists-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        min-height: 68px;
+        padding: 0 18px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    section {
+        padding: 70px 18px;
+    }
+
+    .hero {
+        min-height: 80vh;
+    }
+
+    .hero-content {
+        padding: 60px 18px;
+    }
+
+    .hero h1 {
+        font-size: clamp(42px, 14vw, 65px);
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .btn-outline {
+        margin-left: 0;
+    }
+
+    .services-grid,
+    .artists-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .artist-card img {
+        height: 420px;
+    }
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+}
+  
 </style>
 </head>
 <body>
@@ -344,6 +459,19 @@
     <div class="brand">THE BLOCK</div>
     <div>14 Vilakazi Way, Soweto · 071 234 5678</div>
   </div>
+</footer>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+        <p>© 2026 Your Salon Name. All Rights Reserved.</p>
+
+        <p class="crafted-by">
+            Crafted with <span>♥</span> by
+            <a href="https://kasituwebs.co.za/" target="_blank" rel="noopener noreferrer">
+                KASITU Webs
+            </a>
+        </p>
+    </div>
 </footer>
 
 </body>
